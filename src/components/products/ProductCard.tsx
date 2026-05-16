@@ -195,11 +195,12 @@ const ProductCard = ({ product, className = '', isLoading }: ProductCardProps) =
               <Button
                 variant="glass"
                 size="sm"
-                className="flex-1 h-8 sm:h-9 md:h-9 text-[11px] sm:text-xs md:text-sm px-2.5 sm:px-3 md:px-4 min-w-0 rounded-lg"
+                className="flex-1 h-8 sm:h-9 text-[11px] sm:text-xs md:text-sm px-2 sm:px-3 md:px-4 min-w-0 rounded-lg gap-1 sm:gap-1.5"
                 onClick={handleAddToCart}
               >
                 <ShoppingBag className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
-                <span className="ml-1 truncate">Add to Cart</span>
+                <span className="truncate hidden xs:inline sm:inline">Add to Cart</span>
+                <span className="truncate xs:hidden sm:hidden">Add</span>
               </Button>
               <Button 
                 variant="glass" 
