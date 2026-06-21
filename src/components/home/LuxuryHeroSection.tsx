@@ -219,7 +219,7 @@ const LuxuryHeroSection = memo(() => {
           </div>
 
           {/* Center - Product Showcase */}
-          <div className="lg:col-span-5 relative flex items-center justify-center pt-24 lg:pt-0 order-1 lg:order-2">
+          <div className="lg:col-span-5 relative flex items-center justify-center pt-8 lg:pt-0 order-1 lg:order-2">
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
