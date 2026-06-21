@@ -141,7 +141,7 @@ const LuxuryHeroSection = memo(() => {
   return (
     <section 
       ref={sectionRef} 
-      className="relative min-h-screen overflow-hidden bg-background"
+      className="relative min-h-[640px] lg:min-h-screen overflow-hidden bg-background"
     >
       {/* Light Luxury Multi-Layer Background */}
       <div className="absolute inset-0">
