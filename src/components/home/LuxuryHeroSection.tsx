@@ -401,7 +401,7 @@ const LuxuryHeroSection = memo(() => {
 
                 <Link to="/collections" className="group flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
                   <span className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-border flex items-center justify-center group-hover:border-primary transition-colors">
-                    <span className="text-xs">▶</span>
+                    <Play className="w-3 h-3 fill-current" />
                   </span>
                   <span className="font-body text-xs sm:text-sm">View Story</span>
                 </Link>
