@@ -189,8 +189,8 @@ const LuxuryHeroSection = memo(() => {
       }} />
 
       {/* Main Content Grid */}
-      <div className="relative min-h-screen container mx-auto px-4 lg:px-8 py-8 lg:py-0">
-        <div className="grid lg:grid-cols-12 min-h-screen items-center gap-4 lg:gap-8">
+      <div className="relative lg:min-h-screen container mx-auto px-4 lg:px-8 py-10 lg:py-0">
+        <div className="grid lg:grid-cols-12 lg:min-h-screen items-center gap-6 lg:gap-8">
           
           {/* Left Side - Category Sidebar (Desktop) */}
           <div className="hidden lg:flex lg:col-span-2 flex-col gap-2 py-20">
