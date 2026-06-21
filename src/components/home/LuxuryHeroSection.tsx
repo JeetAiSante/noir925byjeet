@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, memo, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { ChevronDown, Sparkles, Award, Star, ChevronRight } from 'lucide-react';
+import { ChevronDown, Sparkles, Award, Star, ChevronRight, Play } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { supabase } from '@/integrations/supabase/client';
 import { useCategories, useProducts } from '@/hooks/useProducts';
@@ -141,7 +141,7 @@ const LuxuryHeroSection = memo(() => {
   return (
     <section 
       ref={sectionRef} 
-      className="relative min-h-screen overflow-hidden bg-background"
+      className="relative min-h-[640px] lg:min-h-screen overflow-hidden bg-background"
     >
       {/* Light Luxury Multi-Layer Background */}
       <div className="absolute inset-0">
@@ -189,8 +189,8 @@ const LuxuryHeroSection = memo(() => {
       }} />
 
       {/* Main Content Grid */}
-      <div className="relative min-h-screen container mx-auto px-4 lg:px-8 py-8 lg:py-0">
-        <div className="grid lg:grid-cols-12 min-h-screen items-center gap-4 lg:gap-8">
+      <div className="relative lg:min-h-screen container mx-auto px-4 lg:px-8 py-10 lg:py-0">
+        <div className="grid lg:grid-cols-12 lg:min-h-screen items-center gap-6 lg:gap-8">
           
           {/* Left Side - Category Sidebar (Desktop) */}
           <div className="hidden lg:flex lg:col-span-2 flex-col gap-2 py-20">
@@ -219,7 +219,7 @@ const LuxuryHeroSection = memo(() => {
           </div>
 
           {/* Center - Product Showcase */}
-          <div className="lg:col-span-5 relative flex items-center justify-center pt-24 lg:pt-0 order-1 lg:order-2">
+          <div className="lg:col-span-5 relative flex items-center justify-center pt-8 lg:pt-0 order-1 lg:order-2">
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -401,7 +401,7 @@ const LuxuryHeroSection = memo(() => {
 
                 <Link to="/collections" className="group flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
                   <span className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-border flex items-center justify-center group-hover:border-primary transition-colors">
-                    <span className="text-xs">▶</span>
+                    <Play className="w-3 h-3 fill-current" />
                   </span>
                   <span className="font-body text-xs sm:text-sm">View Story</span>
                 </Link>
