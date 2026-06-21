@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, memo, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { ChevronDown, Sparkles, Award, Star, ChevronRight } from 'lucide-react';
+import { ChevronDown, Sparkles, Award, Star, ChevronRight, Play } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { supabase } from '@/integrations/supabase/client';
 import { useCategories, useProducts } from '@/hooks/useProducts';
