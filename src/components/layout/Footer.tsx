@@ -130,7 +130,7 @@ const Footer = () => {
                 type="submit"
                 variant="gold" 
                 size="lg" 
-                className="h-12 px-6 font-medium"
+                className="h-12 px-6 font-medium w-full sm:w-auto self-center sm:self-auto"
                 disabled={subscribeMutation.isPending}
               >
                 {subscribeMutation.isPending ? (
