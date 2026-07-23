@@ -1640,6 +1640,7 @@ export type Database = {
           created_at: string
           description: string | null
           id: string
+          is_public: boolean
           key: string
           updated_at: string
           value: Json
@@ -1649,6 +1650,7 @@ export type Database = {
           created_at?: string
           description?: string | null
           id?: string
+          is_public?: boolean
           key: string
           updated_at?: string
           value?: Json
@@ -1658,6 +1660,7 @@ export type Database = {
           created_at?: string
           description?: string | null
           id?: string
+          is_public?: boolean
           key?: string
           updated_at?: string
           value?: Json
@@ -1943,6 +1946,54 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      site_contact_public: {
+        Row: {
+          address: string | null
+          company_logo: string | null
+          company_name: string | null
+          created_at: string | null
+          email: string | null
+          facebook_url: string | null
+          id: string | null
+          instagram_url: string | null
+          phone: string | null
+          twitter_url: string | null
+          updated_at: string | null
+          whatsapp: string | null
+          youtube_url: string | null
+        }
+        Insert: {
+          address?: string | null
+          company_logo?: string | null
+          company_name?: string | null
+          created_at?: string | null
+          email?: string | null
+          facebook_url?: string | null
+          id?: string | null
+          instagram_url?: string | null
+          phone?: string | null
+          twitter_url?: string | null
+          updated_at?: string | null
+          whatsapp?: string | null
+          youtube_url?: string | null
+        }
+        Update: {
+          address?: string | null
+          company_logo?: string | null
+          company_name?: string | null
+          created_at?: string | null
+          email?: string | null
+          facebook_url?: string | null
+          id?: string | null
+          instagram_url?: string | null
+          phone?: string | null
+          twitter_url?: string | null
+          updated_at?: string | null
+          whatsapp?: string | null
+          youtube_url?: string | null
+        }
+        Relationships: []
       }
     }
     Functions: {
