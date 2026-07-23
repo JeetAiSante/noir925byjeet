@@ -1,0 +1,1 @@
+REVOKE SELECT (gst_number, company_signature) ON public.site_contact FROM anon, authenticated;
