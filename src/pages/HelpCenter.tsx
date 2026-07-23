@@ -68,7 +68,7 @@ const HelpCenter = () => {
     queryKey: ['site-contact-help'],
     queryFn: async () => {
       const { data, error } = await supabase
-        .from('site_contact')
+        .from('site_contact_public' as any)
         .select('*')
         .limit(1)
         .single();
