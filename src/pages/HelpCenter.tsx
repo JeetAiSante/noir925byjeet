@@ -68,8 +68,8 @@ const HelpCenter = () => {
     queryKey: ['site-contact-help'],
     queryFn: async () => {
       const { data, error } = await supabase
-        .from('site_contact_public' as any)
-        .select('*')
+        .from('site_contact')
+        .select('id, company_name, company_logo, phone, email, address, instagram_url, facebook_url, twitter_url, youtube_url, whatsapp')
         .limit(1)
         .single();
       if (error) throw error;
