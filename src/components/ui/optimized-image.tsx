@@ -88,8 +88,14 @@ const OptimizedImage = memo(({
     auto: '',
   };
 
-  const srcSet = generateSrcSet(src);
+  const srcSet = hasError ? undefined : generateSrcSet(src);
   const imageSizes = sizes || getDefaultSizes(aspectRatio);
+
+  // Reset state when the source changes
+  useEffect(() => {
+    setIsLoaded(false);
+    setHasError(false);
+  }, [src]);
 
   return (
     <div
@@ -115,10 +121,19 @@ const OptimizedImage = memo(({
       {/* Actual image */}
       {isInView && (
         <img
+          ref={(node) => {
+            // Cached images can finish loading before React attaches onLoad,
+            // which would leave them stuck at opacity-0 on some browsers.
+            if (node?.complete) {
+              if (node.naturalWidth === 0) setHasError(true);
+              setIsLoaded(true);
+            }
+          }}
           src={hasError ? fallback : src}
           alt={alt}
           loading={priority ? 'eager' : 'lazy'}
           decoding="async"
+          referrerPolicy="no-referrer"
           // @ts-ignore - fetchpriority is valid HTML but React 18 doesn't type it
           fetchpriority={priority ? 'high' : 'auto'}
           srcSet={srcSet}
@@ -137,6 +152,7 @@ const OptimizedImage = memo(({
       )}
     </div>
   );
+
 });
 
 OptimizedImage.displayName = 'OptimizedImage';
