@@ -72,12 +72,23 @@ export function installImageFallback() {
 
   // Stalled-request sweep: some networks hang the connection instead of
   // failing, so neither `load` nor `error` ever fires.
+  const firstSeen = new WeakMap<HTMLImageElement, number>();
   const sweep = () => {
+    const now = Date.now();
     document.querySelectorAll<HTMLImageElement>('img').forEach((img) => {
-      if (img.complete && img.naturalWidth > 0) return;
       if (!img.getAttribute('src')) return;
-      recover(img);
+      if (img.complete && img.naturalWidth > 0) return;
+      const seen = firstSeen.get(img);
+      if (seen === undefined) {
+        firstSeen.set(img, now);
+        return;
+      }
+      // Only intervene once the request has clearly hung.
+      if (now - seen >= STALL_MS) {
+        firstSeen.set(img, now);
+        recover(img);
+      }
     });
   };
-  window.setInterval(sweep, STALL_MS);
+  window.setInterval(sweep, STALL_MS / 2);
 }
