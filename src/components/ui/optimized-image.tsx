@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect, ImgHTMLAttributes, memo } from 'react';
 import { cn } from '@/lib/utils';
+import { proxiedImageUrl } from '@/utils/imageFallback';
 
 interface OptimizedImageProps extends ImgHTMLAttributes<HTMLImageElement> {
   src: string;
@@ -53,6 +54,7 @@ const OptimizedImage = memo(({
   const [isLoaded, setIsLoaded] = useState(false);
   const [isInView, setIsInView] = useState(priority);
   const [hasError, setHasError] = useState(false);
+  const [proxySrc, setProxySrc] = useState<string | null>(null);
   const imgRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -88,13 +90,14 @@ const OptimizedImage = memo(({
     auto: '',
   };
 
-  const srcSet = hasError ? undefined : generateSrcSet(src);
+  const srcSet = hasError || proxySrc ? undefined : generateSrcSet(src);
   const imageSizes = sizes || getDefaultSizes(aspectRatio);
 
   // Reset state when the source changes
   useEffect(() => {
     setIsLoaded(false);
     setHasError(false);
+    setProxySrc(null);
   }, [src]);
 
   return (
@@ -129,7 +132,7 @@ const OptimizedImage = memo(({
               setIsLoaded(true);
             }
           }}
-          src={hasError ? fallback : src}
+          src={hasError ? fallback : proxySrc || src}
           alt={alt}
           loading={priority ? 'eager' : 'lazy'}
           decoding="async"
@@ -140,6 +143,13 @@ const OptimizedImage = memo(({
           sizes={srcSet ? imageSizes : undefined}
           onLoad={() => setIsLoaded(true)}
           onError={() => {
+            // Blocked host / dropped connection: try a neutral image proxy
+            // once before giving up on the local placeholder.
+            const proxied = proxySrc ? null : proxiedImageUrl(src);
+            if (proxied) {
+              setProxySrc(proxied);
+              return;
+            }
             setHasError(true);
             setIsLoaded(true);
           }}
