@@ -125,7 +125,7 @@ const ProductCard = ({ product, className = '', isLoading }: ProductCardProps) =
             <div className={`absolute inset-0 bg-gradient-to-t from-foreground/40 via-transparent to-transparent transition-opacity duration-300 ${showActions ? 'opacity-100' : 'opacity-0'}`} />
 
             {/* Compact Badges - Top Left */}
-            <div className="absolute top-1.5 left-1.5 sm:top-2 sm:left-2 flex flex-col gap-1 sm:gap-1.5 z-10">
+            <div className="absolute top-[52px] left-1.5 sm:top-2 sm:left-2 flex flex-col gap-1 sm:gap-1.5 z-10">
               {product.isNew && (
                 <motion.span 
                   initial={{ scale: 0 }}
@@ -154,7 +154,7 @@ const ProductCard = ({ product, className = '', isLoading }: ProductCardProps) =
               <motion.div
                 initial={{ scale: 0, rotate: -12 }}
                 animate={{ scale: 1, rotate: 0 }}
-                className="absolute top-1.5 right-1.5 sm:top-2 sm:right-2 z-10"
+                className="absolute top-[52px] right-1.5 sm:top-2 sm:right-2 z-10"
               >
                 <div className="relative">
                   <div className="bg-gradient-to-br from-destructive to-destructive/80 text-destructive-foreground px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-md sm:rounded-lg shadow-lg">
@@ -173,10 +173,47 @@ const ProductCard = ({ product, className = '', isLoading }: ProductCardProps) =
               </motion.div>
             )}
 
-            {/* Wishlist button - always visible on mobile, hover on desktop */}
-            <button
+            {/* Phone toolbar: equal touch targets without covering the jewellery. */}
+            <div className="absolute top-1.5 right-1.5 left-1.5 z-20 flex justify-end gap-1 sm:hidden">
+              <Button
+                variant="default"
+                size="icon"
+                className="h-10 w-10 min-h-10 shrink-0 rounded-md shadow-soft"
+                onClick={handleAddToCart}
+                aria-label={`Add ${product.name} to cart`}
+                title="Add to Cart"
+              >
+                <ShoppingBag aria-hidden="true" />
+              </Button>
+              <Button
+                variant="outline"
+                size="icon"
+                className="h-10 w-10 min-h-10 shrink-0 rounded-md bg-background/95 shadow-soft"
+                onClick={handleQuickView}
+                aria-label={`Quick view ${product.name}`}
+                title="Quick View"
+              >
+                <Eye aria-hidden="true" />
+              </Button>
+              <Button
+                variant={inWishlist ? 'secondary' : 'outline'}
+                size="icon"
+                className={`h-10 w-10 min-h-10 shrink-0 rounded-md shadow-soft ${inWishlist ? '' : 'bg-background/95'}`}
+                onClick={handleWishlistClick}
+                aria-label={inWishlist ? 'Remove from wishlist' : 'Add to wishlist'}
+                aria-pressed={inWishlist}
+                title={inWishlist ? 'Remove from wishlist' : 'Add to wishlist'}
+              >
+                <Heart className={inWishlist ? 'fill-current' : ''} aria-hidden="true" />
+              </Button>
+            </div>
+
+            {/* Preserve the existing tablet and desktop actions. */}
+            <Button
+              variant="ghost"
+              size="icon"
               onClick={handleWishlistClick}
-              className={`absolute bottom-1.5 right-1.5 sm:bottom-2 sm:right-2 w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center transition-all duration-300 z-20 ${
+              className={`absolute bottom-1.5 right-1.5 sm:bottom-2 sm:right-2 w-8 h-8 sm:w-9 sm:h-9 rounded-full hidden sm:flex items-center justify-center transition-all duration-300 z-20 ${
                 inWishlist
                   ? 'bg-secondary text-secondary-foreground scale-100'
                   : `bg-background/90 backdrop-blur-sm text-foreground hover:bg-secondary hover:text-secondary-foreground ${showActions ? 'opacity-100 scale-100' : 'md:opacity-0 opacity-100 scale-100 md:scale-90'}`
@@ -184,11 +221,11 @@ const ProductCard = ({ product, className = '', isLoading }: ProductCardProps) =
               aria-label={inWishlist ? 'Remove from wishlist' : 'Add to wishlist'}
             >
               <Heart className={`w-4 h-4 ${inWishlist ? 'fill-current' : ''}`} />
-            </button>
+            </Button>
 
             {/* Quick actions - always visible on mobile, hover on desktop */}
             <div
-              className={`absolute bottom-1.5 left-1.5 right-9 sm:bottom-2 sm:left-2 sm:right-11 md:right-12 flex items-center gap-1.5 sm:gap-2 transition-all duration-300 z-10 ${
+              className={`absolute bottom-1.5 left-1.5 right-9 sm:bottom-2 sm:left-2 sm:right-11 md:right-12 hidden sm:flex items-center gap-1.5 sm:gap-2 transition-all duration-300 z-10 ${
                 showActions ? 'opacity-100 translate-y-0' : 'md:opacity-0 md:translate-y-4 opacity-100 translate-y-0'
               }`}
             >
