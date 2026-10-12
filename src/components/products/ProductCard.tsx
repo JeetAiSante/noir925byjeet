@@ -178,7 +178,7 @@ const ProductCard = ({ product, className = '', isLoading }: ProductCardProps) =
               <Button
                 variant="default"
                 size="icon"
-                className="h-10 w-10 min-h-10 shrink-0 rounded-md shadow-soft"
+                className="h-[40px] w-[40px] min-h-[40px] shrink-0 rounded-md shadow-soft"
                 onClick={handleAddToCart}
                 aria-label={`Add ${product.name} to cart`}
                 title="Add to Cart"
@@ -188,7 +188,7 @@ const ProductCard = ({ product, className = '', isLoading }: ProductCardProps) =
               <Button
                 variant="outline"
                 size="icon"
-                className="h-10 w-10 min-h-10 shrink-0 rounded-md bg-background/95 shadow-soft"
+                className="h-[40px] w-[40px] min-h-[40px] shrink-0 rounded-md bg-background/95 shadow-soft"
                 onClick={handleQuickView}
                 aria-label={`Quick view ${product.name}`}
                 title="Quick View"
@@ -198,7 +198,7 @@ const ProductCard = ({ product, className = '', isLoading }: ProductCardProps) =
               <Button
                 variant={inWishlist ? 'secondary' : 'outline'}
                 size="icon"
-                className={`h-10 w-10 min-h-10 shrink-0 rounded-md shadow-soft ${inWishlist ? '' : 'bg-background/95'}`}
+                className={`h-[40px] w-[40px] min-h-[40px] shrink-0 rounded-md shadow-soft ${inWishlist ? '' : 'bg-background/95'}`}
                 onClick={handleWishlistClick}
                 aria-label={inWishlist ? 'Remove from wishlist' : 'Add to wishlist'}
                 aria-pressed={inWishlist}
