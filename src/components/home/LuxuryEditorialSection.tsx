@@ -141,8 +141,8 @@ const LuxuryEditorialSection = () => {
                 <button
                   key={index}
                   onClick={() => { setCurrentSlide(index); setIsAutoPlaying(false); }}
-                  className={`w-1.5 h-1.5 rounded-full transition-all ${
-                    index === currentSlide ? 'bg-accent w-4' : 'bg-background/40'
+                  className={`w-2 h-2 rounded-full transition-colors ${
+                    index === currentSlide ? 'bg-accent' : 'bg-background/40'
                   }`}
                 />
               ))}
