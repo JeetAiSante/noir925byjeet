@@ -145,6 +145,7 @@
   body {
     @apply bg-background text-foreground font-body antialiased;
     -webkit-tap-highlight-color: transparent;
+    overflow-x: hidden; /* Negative-margin carousels must not widen the page */
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -152,8 +153,11 @@
   }
 
   /* Mobile-optimized touch targets */
+  /* Fixed-size circular controls (dots, close buttons) keep their exact shape */
   @media (max-width: 639px) {
-    button, a, [role="button"] {
+    button:not(.rounded-full),
+    a:not(.rounded-full),
+    [role="button"]:not(.rounded-full) {
       min-height: 36px;
     }
     
@@ -511,8 +515,8 @@
 /* Touch-friendly interactive elements */
 @media (hover: none) and (pointer: coarse) {
   /* Larger touch targets on touch devices */
-  button:not(.btn-icon-sm),
-  [role="button"]:not(.btn-icon-sm) {
+  button:not(.btn-icon-sm):not(.rounded-full),
+  [role="button"]:not(.btn-icon-sm):not(.rounded-full) {
     min-height: 40px;
   }
   
